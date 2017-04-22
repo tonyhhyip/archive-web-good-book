@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!--
+	All plugin javascript and stylesheet are opensource
+-->
+<html lang="zh-TW">
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- #include html5shiv v3.7.0-->
+	<!--[if IE]>
+		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/html5shiv/dist/html5shiv.js"></script>
+		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/respond/respond.min.js"></script>
+	<![endif]-->
+	<script src="loader.min.js"></script>
+	<title>燈火璀璨的背後</title><script>
+	$(document).ready(function(){
+		$("div.row > img").tooltip({
+			show: {
+				effect: "slideDown",
+				delay: 250
+			},
+			hide: {
+				effect: "explode",
+				delay: 250
+			}
+		}).addClass("img-rounded").attr("alt",$("div.row > img").attr("title")).css("max-width","300px");
+		$(".knowledge").before("<h3>潮思文學</h3>").find("img").css("margin-left","30px");
+		$(".slider-container").css("width","350px")
+		for(i=0;i<=15;i++){
+				$("div#slider > ul").append(
+					$("<li></li>").append(
+						$("<a></a>").attr({
+							"href":"#"+(i==0?"about":"ch"+i)
+						}).append(
+							$("<img></img>").attr({
+								"src":"citystory/citystory."+(i==0?"cover":i<10?"0"+i:i)+".png"
+							}).css({
+								"max-width":"300px",
+								"max-height":"400px",
+								"margin-left":"auto",
+								"margin-right":"auto"
+							})
+						)
+					)
+				);
+			}
+		function padding(n){
+			return n<10?"0"+n:n;
+		}
+	    var sudoSlider = $("#slider").sudoSlider({
+            prevNext: true,
+			continuous:true,
+			speed:1000,
+			initCallback:function(){
+				$(".slider-container").before("<img id='prev'>").before("<img id='next'>").css("max-width","300px");
+				$("#slider").css("width","300px");
+				$("img#prev").attr({
+					"src":"citystory/citystory.15.png"	
+				}).css({
+					"float":"left",
+					"max-width":"200px",
+					"margin-left":"30px",
+					"cursor":"pointer"
+				}).click(function(){
+					 sudoSlider.goToSlide("prev");
+				});
+				$("img#next").attr({
+					"src":"citystory/citystory.02.png"
+				}).css({
+					"float":"right",
+					"max-width":"200px",
+					"margin-right":"30px",
+					"cursor":"pointer"
+				}).click(function(){
+					 sudoSlider.goToSlide("next");
+				});
+				$(".nextBtn").css({
+					"background-image":"url(button.right.png)",
+					"background-size":"30px 50px"
+				});
+				$(".prevBtn").css({
+					"background-image":"url(button.left.png)",
+					"background-size":"30px 50px",
+					"z-index":"1"
+				})
+			},
+			beforeAnimation:function(){
+				$("img#next,img#prev").slideUp();
+			},
+			afterAnimation:function(e){
+				$("#slider").css("width","300px");
+				$("img#prev").attr("src","citystory/citystory."+(e==1?15:e==2?"cover":padding(e-2))+".png");
+				$("img#next").attr("src","citystory/citystory."+(e==16?"cover":padding(e))+".png")
+				$("img#next,img#prev").slideDown();
+			}
+        });
+	    $(document).keydown(function(e){
+			if(e.which==39){
+				sudoSlider.goToSlide("next");
+			}else if(e.which==37){
+				sudoSlider.goToSlide("prev");
+			}
+		});
+		$(".nextBtn").css("left","300px");
+		$("article > section").css("margin","5em 0").after("<div class='pull-right'><a href='#top'>回到最上</a></div><hr>");
+		$("header").attr("id","top");
+	});
+</script>
+﻿</head>
+<body>
+<header class="page-header">
+  <h1 style="text-align:center;">燈火璀璨的背後</h1>
+</header>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">首頁</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+		 <li id="main" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">主題介紹 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+              <li><a href="70s.html">那似曾相識的七十年代</a></li>
+            <li><a href="stamp.html">郵票中的香港史</a></li>
+            <li><a href="manision.html">世界中心的貧民窟︰香港重慶大廈</a></li>
+            <li><a href="citystory.html">觀城記 — 做個有情有義的香港人</a></li>
+          </ul>
+        </li>
+        <li><a href="about.html">關於我們</a></li>
+        <li id="ref" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">參考資料 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="70ref.html">那似曾相識的七十年代</a></li>
+			<li><a href="70ref.html#data">&emsp;資料</a></li>
+            <li class="divider"></li>
+            <li><a href="stampref.html">郵票中的香港史</a></li>
+			<li><a href="stampref.html#video">&emsp;影片</a></li>
+            <li class="divider"></li>
+            <li><a href="manref.html">世界中心的貧民窟</a></li>
+			<li><a href="manref.html#web">&emsp;網頁</a></li>
+			<li><a href="manref.html#video">&emsp;影片</a></li>
+            <li class="divider"></li>
+            <li><a  href="cityref.html">觀城記</a></li>
+			<li><a href="cityref.html#video">&emsp;影片</a></li>
+			<li><a href="cityref.html#article">&emsp;文章</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p class="navbar-text navbar-right">
+        <audio src="citystory.you.mp3" controls loops autoplay>
+          <embed src="citystory.you.mp3" type="application/x-shockwave-flash" wmode="transparent" width="50" height="40" allowScriptAccess="always" align="middle" autostart="true">
+        </audio>
+      </p>
+    </div>
+  </div>
+</nav>
+<div class="container">
+	<h2 style="text-align:center;">
+		觀城記－－做個有情有義的香港人
+		<br>
+		<small>
+		作者&emsp;天航
+		<br>
+		出版&emsp;格子盒作室
+		</small>
+	</h2>
+</div>
+<div class="slider-container" style="margin-top:20px;">
+	<div id="slider">
+		<ul></ul>
+	</div>
+</div>
+<div class="container">
+	<p>&emsp;近觀、目睹、鳥瞰、眺望，他既隔岸觀火，又親眼見證。……置身繁華城市，紙醉金迷，浮光掠影，唯有自己的感覺才是最真切的。……人活著最大的荒謬，就是有錢而不快樂。鍍金的金，只是表面好看，並不是真金，一遇紅火，頃刻熔滅。我們都不要「鍍金的繁華」。</p>
+	<article>
+		<section id="about">
+			<h3>關於這本書</h3>
+			<p>&emsp;「比較不同的書本，猶如比較城市，書本有書本的矛盾，城市有城市的，找尋一種看的方法，城市是書本的背景，影響了書本的產生。」（也斯《書與城市》）</p>
+			<p>&emsp;香港乃是天航土生土長之地，在香港回歸的十六年中，經過了一場又一場的衝擊，震駭了香港人的心。香港是一個繁榮之都，但香港人對這片黃金地有不同看法，貧富懸殊、土地問題……香港，是否一個外強中乾的地方？天航以一個香港人，亦以一個在台灣的第三者看對岸的風光，在十五節篇章中有些和政治有關，有些亦寫香港現況和「獅之山下」的精神。</p>
+			<p>&emsp;已移居台北的香港作家天航，過去一直擅寫長篇小說，這本書以故事寫城市，以城市說故事，讓讀者沉思一些城市現象，反思一些事與一些情的常態與歪理、正常與失落、美好與假象，重新以「旁觀者」清清楚楚地刻劃「東方之珠」的另一面貌。</p>
+			<div class="knowledge">
+				<p>香港自從由英國管治後，有不少人視此地為世外桃園，因為中國在上世紀縱內憂外患，香港並不大受影響，有不少中國人民因戰爭混亂而避走到香港，如國共內戰、文化大革命和六四事件等，香港也孕育了不少名人，可謂是一個改為命史之地。</p>
+				<div class="row">
+					<img src="citystory/citystory.jpg" style="margin-left:20px;">
+				</div>
+			</div>
+		</section>
+		<section id="tips" class="panel panel-primary" style="margin:2em 0;">
+			<div class="panel-heading">閱讀小貼士</div>
+			<div class="panel-body">
+				<p>書中的文章都是因天航看了一些片段而產生創作的靈感，看文章同時也看看那些影片、網站，切身感受一下天航揮筆時的心情吧！</p>
+				<p>書中有稍微涉及政治問題，也略見批判性，閱讀之後其想法可參考，但若想知更多，大可以上網找尋相關資料，建立屬於自己獨到的想法！</p>
+				<p>天航是新一代香港作家，不妨找些舊一代作家的作品比較比較，看看文筆、觀點和對香港的感情，對比今昔兩代在香港的經歷和自己的經驗有沒有不同？參考以下文章，自己欣賞一下！</p>
+				<p>
+					<a href="cityref.html#p5">〈九龍城寨︰我們的空間〉&emsp;也斯</a>
+					<br>
+					<a href="cityref.html#p4">〈香海羈蹤〉&emsp;王韜</a>
+					<br>
+					<a href="cityref.html#p3">〈大排檔及其他〉&emsp;司馬長風</a>
+					<br>
+					<a href="cityref.html#p2">〈沙田山居〉&emsp;余光中</a>
+				</p>
+			</div>
+		</section>
+		<section id="ch1">
+			<h3>第一章－－不老騎士</h3>
+			<p>桐伯眼睛亮亮的，臉上都是笑容，一點都不癡呆，看起來很快樂。「呵呵，你有到老也非做不可的夢想嗎？」</p>
+			<p>每個人都有一個夢想，一些人有大夢想，一些人有小夢想，但勿論大小，夢想往往是一個人的力爭上游的動機。夢想可長亦可短，有人年少已得志，而些晚年才實現夢想，但只要盡力打拚，人生便無憾。以前人來香港就是為圓黃金夢，因香港遍地黃金，處處生機！但在追求金錢和奢華以外，有否其他夢想？想想當自己有否實現那在未淪為財奴，仍是初生之犢狂妄之時，所立的夢想？香港令人立了不少繁華的夢，同時也是個絢爛的金鎖，鎖著了不少純潔的夢想……</p>
+			<div class="row">
+				<img src="citystory/citystory.pic01.01.jpg" title="每個人都有一個夢想">
+				<img src="citystory/citystory.pic01.02.jpg" title="圓小時候的夢">
+			</div>
+			<div class="knowledge">
+				<p>「夢想不是掛在嘴邊炫耀的空氣，而是需要認真的實踐。等到對的風，我們展翅翱翔。沒有風，只要擁有足夠強壯的翅膀，我們照樣拔地飛行。人生最重要的，不是完成了什麼，而是如何完成它。」──九把刀〈那些年，我們一起追的女孩〉</p>
+				<p>藝術家想該是最有夢想的職業了，豐富的想像力以寫出好書，畫出好圖，縱自己可能有很多「有夢難圓」的問題，但也可抒發於筆紙之間。人人也是藝術家，在生活中實踐生命的藝術，人生的彩筆蘸上悲歡愛恨，描畫生命的千姿百態，實現夢想更是生命的一大點綴，讓這一幅人生的畫更豐滿，全無留白。</p>
+				<div class="row">
+					<img src="citystory/citystory.pic01.03.jpg" title="實踐生命的夢想" style="margin-left:20px;">
+				</div>
+			</div>
+		</section>
+		<section id="ch2">
+			<h3>第二章－－車不拾遺</h3>
+			<p>結果，我在街上白白等了兩個小時，看著一架又一架的士經過，無數希望盡化為泡影，北風肅殺，我的心都要碎了……</p>
+			<p>計程車司機每日每夜都在窺探不同的面孔，看盡世情冷暖會令他們感情漸淡，還是人情味倍增？老師上課時道他曾趕回校時坐計程車，事後發現他忘了帶錢包，但計程車司機不計較，不收他錢。又一次我把錢包掉在計程車內，司機把它交到學校去。現在有人情味的計程車司機已不多，有些司機會因貪心而把後座遺下的東西據為己有。有人說人受了教育後，反而會變得自私，貪念漸生，人愈困苦愈有同情心，計程車司機的收入不多，但若一位收入不多的司機也能固守其窮，不自私，也不怕麻煩希望能夠把失物交給原主，不是很值得尊敬嗎？</p>
+			<div class="row">
+				<img src="citystory/citystory.pic02.01.jpg" title="看著無數希望盡化為泡影">
+				<img src="citystory/citystory.pic02.02.jpg" title="看著一架又一架的士經過">
+			</div>
+			<div class="knowledge">
+				<p>在有計程車之前，可以私人自僱的車就是人力車，他們有自己的處事方式。在魯迅的<a href="cityref.html#p1">〈一件小事〉</a>中，人力車車夫面對用錢僱他乘客和一個受傷的陌生路人，他會作一個如何的決擇呢？飽受東洋教育的魯迅，助人的熱誠竟不及一位目不識丁的車夫。近期一篇新聞說一名計程車司機騙了旅客六百多元，不但破壞了香港的形象，還是香港人品德質素的映射，真是如此嗎？</p>
+				<div class="row">
+					<img src="citystory/citystory.pic02.03.jpg" title="香港計程車" style="margin-left:30px;">
+				</div>
+			</div>
+		</section>
+		<section id="ch3">
+			<h3>第三章－－誠品精神</h3>
+			<p>「這顆種子要等到十六年後才會成樹結果，但過程中可能隨時失敗，未必可以紮根，不一定能結出果實。這樣的話，你要不要種？」</p>
+			<p>生原是一筆賭注，每個決定都要勇氣，孤注一擲，風險愈大，收益愈高。誠品為在未成功前，吳清友先生面對的風險奇大，誠品連虧損十六年，但吳清友先生非沒放棄，還說︰「店盡量開，不怕虧損」，最後，他賭勝了，誠品書店成了台灣最有名的書店之一。人若有志，敢賭得大，敢飛得高，若風調雨順，就能成為一個成功者，香港是否失去了這種「賭」的衝勁，成了一個見步行步的小城市呢？以前的香港人生活水平低，無物可再失，所以人敢拚博，能在群雄中站起；現在的香港人因為生活已有一定的水平，只求踏實，不思進取，生怕賠本。但是「誠品精神」現出一群敢賭能輸的成功人士的宗旨︰活要痛快，死要無憾！</p>
+			<div class="row">
+				<img src="citystory/citystory.pic03.02.jpg" title="誠品香港銅鑼灣店">
+				<img src="citystory/citystory.pic03.04.jpg" title="台中中友誠品書店">
+			</div>
+			<div class="knowledge">
+				<p>「上帝從來都不會看輕卑微的人，他給誰的都不會太多。」──康拉德．希爾頓（世界旅館之王）</p>
+				<p>誠品成功是因為吳清友先生願意拼博的人，但在巨大的風險下，成功的機會不多。看看一個比較踏實的成功例子︰世界旅館之王康拉德．希爾頓少年時因經濟危機而一貧如洗，但他從僅有的一個蘋果開始作賣買，在買地建酒店他也面對資金缺乏的危機，但他在交易中計算利害，令交易者信服，建立了他的旅館帝國。無論他的做法冒險與否，都要有作決定的勇氣，否則他便無法成功。</p>
+				<div class="row">
+					<img src="citystory/citystory.pic03.01.jpg" title="願意拼博的勇氣" style="margin-left:30px;">
+				</div>
+			</div>
+		</section>
+		<section id="ch4">
+			<h3>第四章－－結婚成本</h3>
+			<p>下輩子做男人，還是投胎到印度好，因為印度人有個奇怪的傳統習俗，竟是由女方的家庭給男方送聘金！</p>
+			<p>男人有四「仔」︰屋仔、車仔、囝仔和老婆仔。香港物價高，甚麼也貴，樓價高，結婚也要有點場面也要開天殺價。但愛一個人要有甚麼要求呢？有錢要帥又聰明？現在香港離婚率甚高，想回當時站在教堂上因甚麼而說「我願意」？愛一個人是一種感覺，不應以外貌或任何數字來評估他，若真心相愛，不管婚禮風光與否，心中想許便成！香港人的情有如麻木了一般，不再看重感情。比起盲婚啞嫁的年代，年青人更不能正視自己的情，他們可能夠在紙醉金迷的地方找到激「情」澎湃之處？</p>
+			<div class="row">
+				<img src="citystory/citystory.pic04.02.jpg" title="為何要說「我願意」">
+			</div>
+			<div class="knowledge">
+				<p>「愛情原是錦上添花的事，男女互相為對方傾倒，糊裡糊塗那麼一刻兩刻時分，便視為愛情，等到看清楚之後，不外是那麼一回事，雙方可以容忍的，便相處下來，不能夠的，便立刻分開。」──亦舒</p>
+				<p>「我以為愛情可以填滿人生的遺憾。然而，製造更多遺憾的。卻偏偏是愛情。」──張愛玲</p>
+				<p>以上為兩位作家的愛情觀，有人曰若「愛」失去了「心」則會變成「受」字。愛情是發自內心的，互相真誠、尊重、理解、坦白和接納，否則只會留下無限遺憾。</p>
+				<div class="row">
+					<img src="citystory/citystory.pic04.01.jpg" title="愛情是相互發自內心的接納">
+				</div>
+			</div>
+		</section>
+		<section id="ch5">
+			<h3>第五章－－廁所物語</h3>
+			<p>別忘了，如果隨地便溺是一種罪惡，用仇意惡視是一種更大的罪惡。別人可以缺乏公德心，但我們不能缺少同情心。寬容也是文明的一種態度。</p>
+			<p>有沒有親眼目睹內地旅客在街上便溺？這種人可避之但不可惡意仇視他們，皆因如此也未必改變他們的現行，但會侮辱了自己的人格。得饒人處且饒人，況香港洗手間的分配真無跡可尋，在英國，街頭巷尾的店舖都有洗手間，但在香港，在人來人往的九龍地鐵站也只有兩處洗手間！香港人要找洗手間己有困難，到異地鄉找洗手間更有難度，就算找到也可能排著長龍，可見香港洗手間不足的問題需要改善。</p>
+			<div class="row">
+				<img src="citystory/citystory.pic05.02.jpg" title="內地洗手間">
+				<img src="citystory/citystory.pic05.03.jpg" title="九龍地鐵站只有兩處洗手間">
+			</div>
+			<div class="knowledge">
+				<p>「我看中國有許多智識分子，嘴裡用各種學說和道理，來粉飾自己的行為，其實卻只顧自己一個的便利和舒服，凡有被他遇見的，都用作生活的材料，一路吃過去，像白蟻一樣，而遺留不來的，卻只是一條排泄的糞。」──魯迅｛1935年4月3日致蕭軍、蕭紅｝</p>
+				<p>學文思潮在「反國教」之時成立，但大家都不知國教教案為何，只道他們只是「洗腦教育」，試問在世界上哪個地方，推出國民教育會被標籤洗腦？一句「我們有遊行自由，所以我們遊行並不需申請」，則令人苦笑︰這便是香港一直追求的自由！</p>
+				<div class="row">
+					<img src="citystory/citystory.pic05.01.jpg" title="寬容也是文明的一種態度。">
+				</div>
+			</div>
+		</section>
+		<section id="ch6">
+			<h3>第六章－－形象工程</h3>
+			<p>現代美容產品層出不窮，看了台灣電視台教化妝的節目，我覺得部分女性的化妝技術已構成「犯罪行為」。</p>
+			<p>愛美為女子的天性，人們也有「先敬羅衣後敬人」的想法，為給人良好印象，但是若把自己原有的樣子給改變，就會失去了自我，在欺騙人，也在騙自己。整容和化妝都會影響健康，化妝品有很多化學物質，到了一定的年紀會出現皮膚乾裂的現象，得不償失。整容更用自己的命來拼，這種小手術有一定的風險，若成了不幸的一群，可能會終生毀容，為了貪些少美貌而賠上一生的容光，值得嗎？</p>	
+			<div class="row">
+				<img src="citystory/citystory.pic06.02.jpg" title="化妝改變樣子">
+			</div>
+			<div class="knowledge">
+				<p>「生活無時無刻、無處不在地存在著讓人心動的溫暖與種種可愛之處，人類才一天一天地延續下來，并在不斷地進化自己。……美是文學的基礎，是我們活下去的理由，……美的力量大于思想的力量﹔再深刻的思想都會過時或成為常識，唯獨美是永遠的。」──曹文軒（北京大學中文系教授）</p>
+				<p>美不只是一個形容外表的形容詞。美可是發自內心的真善美，莫因善小而不為，微不足道的事上，不求回報地幫助他人，若一個人是如此，發自內心的美也會表現在臉上，言行舉止，也會表現出其獨有的氣質，效果遠比化妝品好，再好的化妝品也蓋不住歲月的痕跡，但這唯美的氣質卻是美的最佳補品。</p>
+				<p>相反，過度的化妝只會弄巧反拙，令人反感。</p>
+				<div class="row">
+					<img src="citystory/citystory.pic06.01.jpg" title="過度的化妝只會令人反感">
+				</div>
+			</div>
+		</section>
+		<section id="ch7">
+			<h3>第七章－－絕育社會</h3>
+			<p>對任何計程車司機來說，曾載孕婦去醫院好像是甚麼一級榮譽，阿達也不例外，變成全身熱血上湧的狀態。</p>
+			<p>嬰兒是社會未來的棟樑，現代有不少人把生命奉獻給工作，不成家立室，甚至有「好貓不留種」不心態，但是生兒育女卻應是給予社會最大貢獻的一件事，他們是文化和精神傳承遞嬗的載體，成就未來大事。但養育兒女並不是一件易事，因為自己要承擔一個生命的責任，若一個嬰兒能出生，最有成功感就是婦產科醫生；一個嬰兒能健康成長，最驕傲的一定是父母。香港人口老化問題嚴重，需要大量新血來喚起城市的活力。現在自己站的位置，定是後起之秀會站的地方！</p>
+			<div class="row">
+				<img src="citystory/citystory.pic07.02.jpg" title="人口老化問題日益嚴重">
+			</div>
+			<div class="knowledge">
+				<p>「五十年代初期的中國母親，那種苦熬出頭，望子成龍的心情，當不是七十年代和樂利太平歲月中生活的母親可以體會的罷。」──莊因〈箱中日月〉</p>
+				<p>以前要養活家庭不容易，但出生率比現在高，一家可以有八九口，父母生兒育女不但是因望子女在他們老時給予回報，而且想子女有好的未來，回饋社會，為社會作出貢獻。現在香港有不少的父母並不理解這一點，雖都有能力養育更多子女，但因為工作關係不願生子，香港將來可能會缺乏人才，到時文化和知識可能未能得以傳承。在絕育社會中，香港的未來一代能再支撐香港的展發嗎？</p>
+				<div class="row">
+					<img src="citystory/citystory.pic07.01.jpg" title="嬰兒是社會未來的棟樑">
+				</div>
+			</div>
+		</section>
+		<section id="ch8">
+			<h3>第八章－－金山山下</h3>
+			<p>莊豐源能繼續留在香港讀書，每天上學，再也不用怕被抓。電視螢幕播出莊豐源和同學歡聚的畫面。我相信，當年會有香港人曾為電視上那幕溫馨的場面而感動。</p>
+			<p>雙非兒童是香港正面對的問題，說內地孕婦來港產子令香港的醫療體系受影響，雙非兒童也會和本地學生爭學位和兒童的福利。但縱是雙非兒童也要生活，他們也求學心切，若香港人心胸容不下他們，那還容得下其他國家和不同種族的人嗎？想香港是戰火正盛二十世紀的中國人逃離戰亂的避世鄉，香港人也能大方納他們，和他們共渡難關。雙非兒童生於香港長於香港，也是香港人，為何要對歧視他們的來歷背景呢？</p>
+			<div class="row">
+				<img src="citystory/citystory.pic08.02.jpg" title="人人平等">
+			</div>
+			<div class="knowledge">
+				<p>「我們只崇敬真理，自由的、無限的、不分國界的真理，毫無種族歧視或偏見的真理。 」—— 羅曼．羅蘭（法國思想家．文學家）</p>
+				<p>千禧年始，港人對雙學非嬰孩這個名詞並不厭惡，這些雙非嬰孩有望成為香水的未來棟樑，解決本地出生率低的問題。可是香港人對他們的歧視愈來愈嚴重，大家都是同一種族，分別只是「香港人」和「中國人」，這難道會成國內的一種「另類種族歧視」嗎？</p>
+				<div class="row">
+					<img src="citystory/citystory.pic08.01.jpg" title="和平共處">
+				</div>
+			</div>
+		</section>
+		<section id="ch9">
+			<h3>第九章－－塞翁失屋</h3>
+			<p>捫心自問，我真的不是甚麼有錢人，住在這樣的房子，真的非常心虛。家裡太大，只剩我一個人的時候，我也擔心會感到無盡空虛。</p>
+			<p>香港寸金尺土，數價飇升迅速，以一些中產甚至低收入人士，他們沒有像樣的單位居住，但他們是多麼渴望有一「安樂蝸」。「衣食住行」，住屋是生活重要範疇之一，若連居家也不能安穩，香港人何有未來？生活在貧富懸殊的東方之珠，外表繁榮風光，但是也有為數不少的人需入住劏房、甚至露宿街頭。這些人我們是不容忽視的，若能拉近貧富的差距，讓香港人得到香港人應有的享受，有何不可呢？</p>
+			<div class="row">
+				<img src="citystory/citystory.pic09.02.jpg" title="露宿者">
+				<img src="citystory/citystory.pic09.03.jpg" title="關懷困患">
+			</div>
+			<div class="knowledge">
+				<p>杜甫一句「朱門酒肉臭，路有凍死骨」道出了香港以至全世界貧富懸殊的問題。台灣作家洪醒夫的〈吾土〉刻劃著國家權力介入，當資本主義社會發展，出現貧富懸殊的問題，馬水生一家人，一生努力勞動，最後卻連唯一的生存需求都被剝奪。農民愈工作愈貧窮，令他們生活不繼，香港也有不少窮困人士，蹤不至於三餐不飽，但住在惡劣環境的人也不少，難道香港發展經濟同時，也拉開了貧富的差距？在本地居民生活和香港的國際地位之間，政府會如何取捨？</p>
+				<div class="row">
+					<img src="citystory/citystory.pic09.01.jpg" title="應如何取捨">
+			</div>
+		</section>
+		<section id="ch10">
+			<h3>第十章－－感情價值</h3>
+			<p>誰付得起租金，就可以租下黃金地段，這件事無可厚非，屬於市場的一切就該由市場來定價。價高者得，汰弱留強。</p>
+			<p>香港為文明之都，但為了發展社會或重建發展，而忽略了文化保育，拆卸具歷文化價值的建築或街道，破壞了集體回憶。有不少人的回憶以一些地方為背景，有些地方便陪著某些人長大的，但若企業、政府認為它無價值，便會將之拆毀，但拆卸這些建築，也摧殘了不少市民珍而重之的回憶。這些文物是香港經歷百年滄桑的見證，但有些人卻要把這些痕跡一一剷除。最後，香港會否成為一個沒有歷史，沒有感情的地方？</p>
+			<div class="row">
+				<img src="citystory/citystory.pic10.02.jpg" title="天星碼頭溝拆">
+				<img src="citystory/citystory.pic10.03.jpg" title="皇后碼頭溝拆">
+			</div>
+			<div class="knowledge">
+				<p>「我在外面說香港並不是沒有文化，回來又禁不住說為何我們總是追逐外間的標準，為何不能建立自己的標準，自己的文化空間？我胡亂說話，果令自己置身邊緣，在自己的家鄉有時也像個異鄉人。」──也斯〈九龍城寨︰我們的空間〉</p>
+				<p>政府、市場把認為沒有價值的事物抹殺掉，令人們的寶貴回憶，甚至精神支柱一拼毀掉，令不少人喪失自我。香港人是否應在自己的一片黃金地找回香港獨有的文他知識，並好好保存香港歷史見證的一群代表，在這個大千世界之中好好確認自己的身份？〈問我〉</p>
+				<div class="row">
+					<img src="citystory/citystory.pic10.01.jpg" title="經濟發展和保育間真的沒有任何空間?">
+				</div>
+		</section>
+		<section id="ch11">
+			<h3>第十一章－－忘不了的</h3>
+			<p>那裡是父母口中的故土，在山的那一邊，在海的那一端，她最大的夢想曾經是到那裡演唱，卻一直無法如願以償。</p>
+			<p>歌星能憑他們的歌喉感動很多人，「小鄧」鄧麗君的歌星很有理想和活力，為國家再展生機，為人民注入力量。一首好歌就像一篇好文章，能拯救民族的靈魂，斷而改變一個團體，甚至整個國家。這一篇篇章記述天航對鄧麗君的尊敬，他認為鄧麗君有這個時代缺乏的骨氣和勇氣。現代人總不能堅守自己的原則和信念，每個人都有自己的崗位，為團體和國家作出貢獻，在其他人的心中留下一點的印象，來證明自己曾活過。</p>
+			<div class="row">
+				<img src="citystory/citystory.pic11.01.jpg" title="曾經的一代巨星已離去，只剩下一首首的經典">
+				<img src="citystory/citystory.pic11.02.jpg" title="文化大革命，令我們失去了很多">
+				<img src="citystory/citystory.pic11.03.jpg" title="鄧麗君,亞洲歌唱女王">
+			</div>
+			<div class="knowledge">
+				<p>歌曲出名與否不只在於歌是否好聽，歌詞有沒有意思也是一個重要的因素。鄧麗君的〈小城故事〉歌詞簡單，寫出一個小城中的多姿多彩好客如雲的特色。歌中的小城和香港恁地相似，難道這個小城說的就是香港？</p>
+				<pre style="margin:0 10px;">
+小城故事
+小城故事多 充滿喜和樂
+若是你到小城來　收穫特別多
+看似一幅畫　聽像一首歌
+人生境界真善美　這裡已包括
+談的談　說的說　小城故事真不錯
+請你的朋友一起來　小城來做客
+				</pre>
+			</div>
+		</section>
+		<section id="ch12">
+			<h3>第十二章－－中華英雄</h3>
+			<p>英雄莫問出處，窮少年可以拚出一番成就，並得到世人的矚目。而他們成功的故事可以激勵更多人，令整個社會步向良性循環。</p>
+			<p>英雄為何物？沒有人一出生就是英雄，是要經一番磨鍊的。體育界常出英雄，因為人的肉體是有極限的，但運動員們都勇於挑戰極限，在訓練埸中幾經嚴格練習才能走到比賽埸地，創造一次又一次的傳奇。若是他們的出身背景比其他人不同，他們的經驗能鼓勵很多人發憤向上，積極面對人生。運動精神亦鼓吹「團結」，不但在運動員之間可應用出來，國民之間的團結也非常重要，因為運動員之間的結可助勝出比賽，而中國國民之間的團結能令那國家或地區在世界中站起來，令國民為自己是「中國人」感驕傲！</p>
+			<div class="row">
+				<img src="citystory/citystory.pic12.02.jpg" title="中華英雄">
+				<img src="citystory/citystory.pic12.03.jpg" title="永不言敗">
+			</div>
+			<div class="knowledge">
+				<p>「人生的目的，在發展自己的生命，可是也有為發展生命必須犧牲生命的時候。因為平凡的發展，有時不如壯烈的犧牲足以延長生命的音響和光華。絕美的風景，多在奇險的山川。絕壯的音樂，多是悲涼的韻調。高尚的生活，常在壯烈的犧牲中。」—— 李大釗</p>
+				<p>每個人都有自己的使命，為一些自己認識甚至不認識的人作出貢獻、犧牲。「天降大任於斯人」，每個人都是英雄，只在於影響到多少人。努力燃燒自己，令香港成為一個星光閃閃的地方！</p>
+				<div class="row">
+					<img src="citystory/citystory.pic12.01.jpg" title="每個人都是英雄">
+				</div>
+			</div>
+		</section>
+		<section id="ch13">
+			<h3>第十三章－－殺人工具</h3>
+			<p>常人不會故意殺害與自己毫不相干的人，但報紙裡的交通意外讓我們知道，常常有駕駛者因粗心大意肇禍，害死陌生人，毀了別人的家庭。</p>
+			<p>馬路如虎口，駕車的人在駕駛座上已把自己賣給「老虎」。他們不希望出意外，但意外總是意料之外，一旦出事，就不想惹上官非，想灑手肇事而去，卻不知自己毀了他人的幸福。二零一二年五月造成十九人死、四十三人傷的西貢旅遊巴大車禍，肇事司機承認危險駕駛致他人死亡罪，被判入獄三年零四個月，停牌三年。十九條人命等於四十個月刑期，每條人命平均二點一個月刑期。但這件事件令多少人流淚，這處罰公平嗎？香港的馬路窄，交通黑點多，車禍也多，但豈能容駕駛者一個大意而毀了這麼多人的生命？令人反思──生命何價？</p>
+			<div class="row">
+				<img src="citystory/citystory.pic13.01.jpg" title="生命何價？">
+				<img src="citystory/citystory.pic13.02.jpg" title="一場車禍毀了多少的幸福?">
+				<img src="citystory/citystory.pic13.03.jpg" title="一時之快換得畢生後悔，值嗎?">
+			</div>
+			<div class="knowledge">
+				<p>「其實即使天才，在生下來的時候的第一聲啼哭，也和平的兒童一樣，決不會就是一首好詩。」──魯迅《墳．未有天才之前》</p>
+				<p>人人的起點都是一樣的，就算生在富貴世家，也不要以為他們的路比窮苦的人平坦。人出生就在迷宫的起點，縱可能自己在起點A別人在起點B，但終點一定一樣──乃是死亡，不可能走到別人的起點，也不可能不見胡同，所以不要為挫敗而放棄。</p>
+				<p>人生長跑　葉振棠</p>
+			</div>
+		</section>
+		<section id="ch14">
+			<h3>第十四章－－輸在終點</h3>
+			<p>在四百米跑的徑賽中，太早衝刺的人，很難保持均速跑完最後一百米。在中、長距離的徑賽項目，勝敗的關鍵不在起跑，而是你在跑道上堅持的毅力、速度和爆發力。</p>
+			<p>一些「仇富」的香港人常埋怨富家子弟有好背景好家勢，在人生的比賽早就算半贏了，而窮困的小孩早就輸在起跑線上，事實真的如此？其實一生就是一場長跑，起點如何不要緊，縱使起點比人後一百米，但在四十二公里的馬拉松中，一百米不算甚麼，因為有四十多公里去追，只怕是用力錯誤，一失足成千古恨，在終點前的數百米倒下，最後還是輸了。起點好不過是稍稍的甜頭罷了，在終點前如何用僅存的氣力跑贏對手才是關鍵，培養良好品德就會成為一件很好的武器，幫助自己贏到最後。</p>
+			<div class="row">
+				<img src="citystory/citystory.pic14.02.jpg" title="太早參加只會有辛酸的童年">
+				<img src="citystory/citystory.pic14.03.jpg" title="事實真的如此？">
+			</div>
+			<div class="knowledge">
+				<p>「其實即使天才，在生下來的時候的第一聲啼哭，也和平的兒童一樣，決不會就是一首好詩。」──魯迅《墳．未有天才之前》</p>
+				<p>人人的起點都是一樣的，就算生在富貴世家，也不要以為他們的路比窮苦的人平坦。人出生就在迷宫的起點，縱可能自己在起點A別人在起點B，但終點一定一樣──乃是死亡，不可能走到別人的起點，也不可能不見胡同，所以不要為挫敗而放棄。──《人生長跑》　葉振棠</p>
+				<div class="row">
+					<img src="citystory/citystory.pic14.01.jpg" title="在終點前跑贏對手才是關鍵">
+				</div>
+			</div>
+		</section>
+		<section id="ch15">
+			<h3>第十五章－－改變未來</h3>
+			<p>我能力有限，但只要我的讀友之中，將來能走出一個領導和改變世界的偉人，就算本人仍然囊中羞澀、身分低微，我亦會為自己的一生感到無悔和自豪。</p>
+			<p>香港出了不少名人︰昭逸夫、李小龍、高錕等。在不同方面也對世界有一定的貢獻，改變了不少人的生心。培育一個有可改變未來的人不易，但亂世出英雄，改變世界思想的誕生，往往只是一件平常的事情引起。洪秀全因一個夢而立太平天國，孫中山則因洪秀全一個故事而生革命之想……改變世界的大志是一直遞嬗移植，一代接一代，把世界不斷改善，直至建立人人夢想的「烏托邦」！</p>
+			<div class="row">
+				<img src="citystory/citystory.pic15.02.jpg" title="雨後總有彩虹">
+			</div>
+			<div class="knowledge">
+				<p>香港以前只是一個殖民地，偏偏孕育了一群改變了未來的烈士，孫中山就是其中之一。</p>
+				<p>1923年2月19日孫中山在香港大學演說時指出：「我之思想發源地即為香港。至於如何得之？則三十年前在香港讀書，暇時輒閒步市街，見其秩序整齊，建築閎美，工作進步不斷，腦海中留有甚深之印象。」最後總結道：「我之革命思想，完全得之於香港。」</p>
+				<p>孫中山生在封建統治日益腐朽、中國人民飽受屈辱的年代，年輕時他和魯迅一樣相信醫學可救國，後來他認為他要拯救的單位不只是人民，而是國家，香港和中國其他地方構成的巨大對比，革命思想自此建立。</p>
+				<div class="row">
+					<img src="citystory/citystory.pic15.01.jpg" title="未來由自己開創">
+				</div>
+		</section>
+	</article>
+</div>
+<footer class="page-footer">
+	<p>
+		如閣下希望有更好的體驗，請使用
+			<a href="https://www.google.com/intl/en-GB/chrome/browser/?hl=en-GB&brand=CHMI">
+				Google Chrome
+			</a>
+		或
+			<a href="http://mozilla.com.tw/firefox/all/">
+				Mozilla Firefox
+			</a>
+		<br>
+		<span style="font-size:5px;">
+			Web page designed by Carmen Chui and Sharon Yeung. Code designed by Tony Yip. All designers are from <a href="http://www.pyc.edu.hk/">Shatin Pui Ying College</a>
+			<br>
+			Plugin by jQuery Foundation, Inc. and Twitter, Inc.
+			<br>
+			Formatting: Apache/2.4.7 (Win32) OpenSSL/0.9.8y PHP/5.4.22
+		</span>
+	</p>
+</footer>
+</body>
+</html>

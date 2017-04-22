@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--
+	All plugin javascript and stylesheet are opensource
+-->
+<html lang="zh-TW">
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- #include html5shiv v3.7.0-->
+	<!--[if IE]>
+		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/html5shiv/dist/html5shiv.js"></script>
+		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/respond/respond.min.js"></script>
+	<![endif]-->
+	<script src="loader.min.js"></script>
+	<title>燈火璀璨的背後</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("audio").remove();
+	});
+</script>
+</head>
+<body>
+<header class="page-header">
+  <h1 style="text-align:center;">燈火璀璨的背後</h1>
+</header>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">首頁</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+		 <li id="main" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">主題介紹 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+              <li><a href="70s.html">那似曾相識的七十年代</a></li>
+            <li><a href="stamp.html">郵票中的香港史</a></li>
+            <li><a href="manision.html">世界中心的貧民窟︰香港重慶大廈</a></li>
+            <li><a href="citystory.html">觀城記 — 做個有情有義的香港人</a></li>
+          </ul>
+        </li>
+        <li><a href="about.html">關於我們</a></li>
+        <li id="ref" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">參考資料 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="70ref.html">那似曾相識的七十年代</a></li>
+			<li><a href="70ref.html#data">&emsp;資料</a></li>
+            <li class="divider"></li>
+            <li><a href="stampref.html">郵票中的香港史</a></li>
+			<li><a href="stampref.html#video">&emsp;影片</a></li>
+            <li class="divider"></li>
+            <li><a href="manref.html">世界中心的貧民窟</a></li>
+			<li><a href="manref.html#web">&emsp;網頁</a></li>
+			<li><a href="manref.html#video">&emsp;影片</a></li>
+            <li class="divider"></li>
+            <li><a  href="cityref.html">觀城記</a></li>
+			<li><a href="cityref.html#video">&emsp;影片</a></li>
+			<li><a href="cityref.html#article">&emsp;文章</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p class="navbar-text navbar-right">
+        <audio src="<?= isset($bgsound)?$bgsound:""?>" controls loops autoplay>
+          <embed src="<?= isset($bgsound)?$bgsound:""?>" type="application/x-shockwave-flash" wmode="transparent" width="50" height="40" allowScriptAccess="always" align="middle" autostart="true">
+        </audio>
+      </p>
+    </div>
+  </div>
+</nav>
+<div class="container">
+	<h3>關於我們</h3>
+	<p>我們來自沙田培英中學，今年中四，是一對形影不離的姊妹花。我們的性格、喜好、習慣都不同，本是兩道互不相干的平行線；然而，因為閱讀，把我們倆緊緊繫在一起。</p>
+	<div class="row">
+		<img src="about.png" title="左:徐嘉敏 中:楊晞雪 右:葉浩匡">
+	</div>
+	<hr>
+	<h3>楊晞雪</h3>
+	<p>文靜被動且膽小怕事的女孩子，修讀全文科，熱愛中文，尤好寫作閱讀。閒時最愛到書店和圖書館流連，偏愛閱讀散文、小說，是愛情小說和抒情散文的忠實粉絲，唯獨經常沉醉在虛幻的世界中，討厭過份赤裸裸的現實。</p>
+	<p>不得不承認，我在閱讀上確實有「偏食」的壞習慣——尤其是完成這個網頁後，這事實就更顯而易見了。讀了幾本有關香港的歷史和社會發展的書，才發覺原來現實比我想像中更容易接受——它們的確是引人深思的直接，但只有透過這些圖書，我們才能可以更深入了解我們正在生活的這個城市。未來，我要改掉這個壞習慣，嘗試多閱讀貼近社會現實的圖書！</p>
+	<hr>
+	<h3>徐嘉敏</h3>
+	<p>活潑好動又勇於嘗試的一個女子，修讀全理科，熱愛書畫，尤其畫漫畫，閒時最愛閉關於房內畫畫陶冶性情。閱讀方面，不甚好情意綿綿的抒情散文，也不愛描寫仔細而帶乏味的描寫文和憑空創作的小說。若說故事，歷史更貼近現實，討厭無科學根據的小說。現實主義者︰活在殘酷現實之中，可以幻想作逆旅，卻不可避之。</p>
+	<p>「香港的月亮還是以前的圓」，我一直都有這種想法，也很嚮往以前的港人生活。沒有複雜的政治，只是為生命打拚，為夢想而生活，這是我一直欣賞的生活態度。在我讀的書中，作者都是因一段片段，一些物件勾起一些想法和歷史，全文始原於一，我才能有條理由淺入深轉簡為繁地閱讀這些書，真箇令我了解史多過去到現在的香港。歷史往往有值得借鑒的地方，所以過去也是未來的明燈，所以我會多讀史書，把香港變成一個更有將來的地方。</p>
+	<hr>
+	<h3>葉浩匡</h3>
+	<p>資優學生，數學和資訊科技屬首屈一指，修讀理商科，自修資訊科技，熱愛創造和探究新事物，尤其熱愛開放式源碼(Opensource)，閒時最愛開發各種系統。閱讀方面，偏愛閱讀散文、小說，各種對愛情的抒情散文情有獨鍾，但對長篇愛情小說非常反感。</p>
+	<p>對於香港的另一面，我絕對不太清楚。雖然平日略有所聞，但閱讀這些書，讓我感受到香港的另一面是如此的不一樣。我見識到往日港人拼博、打不死的精神，才會有今時今日繁榮的香港。可以完成這個網頁，絕對需要感謝徐嘉敏和楊晞雪的信賴。製作這個網頁，我使用了純HTML5及各種jQuery Plugin。</p>
+	<hr>
+	<h3>特別鳴謝:</h3>
+	<p>在此特別感謝洪力平老師的推薦，陳得南老師寶貴的意見</p>
+	<ul>
+		<li>負責老師 : 洪力平老師</li>
+		<li>程式庫 : jQuery Foundation, Inc. - jQuery</li>
+		<li>程式庫 : Project WHJSLS - PurpleDragon (Shatin Pui Ying College)</li>
+		<li>效果 : jQuery Foundation, Inc. - jQuery UI</li>
+		<li>樣式 : Twitter, Inc. - Bootstrap</li>
+		<li>SudoSlider : Erik Krogh Kristensen</li>
+	</ul>
+</div>
+<footer class="page-footer">
+	<p>
+		如閣下希望有更好的體驗，請使用
+			<a href="https://www.google.com/intl/en-GB/chrome/browser/?hl=en-GB&brand=CHMI">
+				Google Chrome
+			</a>
+		或
+			<a href="http://mozilla.com.tw/firefox/all/">
+				Mozilla Firefox
+			</a>
+		<br>
+		<span style="font-size:5px;">
+			Web page designed by Carmen Chui and Sharon Yeung. Code designed by Tony Yip. All designers are from <a href="http://www.pyc.edu.hk/">Shatin Pui Ying College</a>
+			<br>
+			Plugin by jQuery Foundation, Inc. and Twitter, Inc.
+			<br>
+			Formatting: Apache/2.4.7 (Win32) OpenSSL/0.9.8y PHP/5.4.22
+		</span>
+	</p>
+</footer>
+</body>
+</html>

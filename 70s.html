@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--
+	All plugin javascript and stylesheet are opensource
+-->
+<html lang="zh-TW">
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- #include html5shiv v3.7.0-->
+	<!--[if IE]>
+		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/html5shiv/dist/html5shiv.js"></script>
+		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/respond/respond.min.js"></script>
+	<![endif]-->
+	<script src="loader.min.js"></script>
+	<title>燈火璀璨的背後</title><script>
+	$(document).ready(function(){
+		$("article > section").css("margin","5em 0").after("<div class='pull-right'><a href='#top'>回到最上</a></div><hr>");
+		$("header").attr("id","top");
+		$("div > img").tooltip({
+	    	show: {
+	    		effect: "slideDown",
+	        	delay: 250
+	      	},
+	      	hide: {
+		    	effect: "explode",
+		    	delay: 250
+		    }
+	    }).addClass("img-rounded").attr("alt",$("img").attr("title")).css("max-width","300px");
+	    $(".knowledge").before("<h3>歷史小百科</h3>");
+	    var icon=["cover","chinese","QueenCollege","03_icon","icac","bank","04_icon","05_02","05_icon","wyc","06_icon"];
+	    for(i in icon){
+				$("div#slider > ul").append(
+					$("<li></li>").append(
+						$("<a></a>").attr({
+							"href":"#"+(i==0?"about":"ch"+i)
+						}).append(
+							$("<img></img>").attr({
+								"src":"70s/70s."+icon[i]+(i==0?".png":".jpg"),
+								"width":"500"
+							}).css({
+								"max-width":"300px",
+								"max-height":"500px"
+							})
+						)
+					)
+				);
+			}
+	    var sudoSlider = $("#slider").sudoSlider({
+            prevNext: true,
+			continuous:true,
+			speed:1000,
+			initCallback:function(){
+				$(".slider-container").before("<img id='prev'>").before("<img id='next'>").css("width","300px");
+				$("#slider").css("width","300px");
+				$("img#prev").attr({
+					"src":"70s/70s.06_icon.jpg"	
+				}).css({
+					"float":"left",
+					"max-width":"200px",
+					"margin-left":"30px",
+					"cursor":"pointer"
+				}).click(function(){
+					 sudoSlider.goToSlide("prev");
+				});
+				$("img#next").attr({
+					"src":"70s/70s.chinese.jpg"
+				}).css({
+					"float":"right",
+					"max-width":"200px",
+					"margin-right":"30px",
+					"cursor":"pointer"
+				}).click(function(){
+					 sudoSlider.goToSlide("next");
+				});
+				$(".nextBtn").css({
+					"background-image":"url(button.right.png)",
+					"background-size":"30px 50px",
+					"left":"300px"
+				});
+				$(".prevBtn").css({
+					"background-image":"url(button.left.png)",
+					"background-size":"30px 50px",
+					"z-index":"1"
+				})
+			},
+			beforeAnimation:function(){
+				$("img#next,img#prev").slideUp();
+			},
+			afterAnimation:function(e){
+				$("#slider").css("width","300px");
+				$("img#prev").attr("src","70s/70s."+icon[e==1?icon.length-1:e-2]+(e==2?".png":".jpg"));
+				$("img#next").attr("src","70s/70s."+icon[e==icon.length?0:e]+(icon.length==e?".png":".jpg"));
+				$("img#next,img#prev").slideDown();
+			}
+        });
+	    $(document).keydown(function(e){
+			if(e.which==39){
+				sudoSlider.goToSlide("next");
+			}else if(e.which==37){
+				sudoSlider.goToSlide("prev");
+			}
+		});
+	});
+</script>
+﻿</head>
+<body>
+<header class="page-header">
+  <h1 style="text-align:center;">燈火璀璨的背後</h1>
+</header>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">首頁</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+		 <li id="main" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">主題介紹 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+              <li><a href="70s.html">那似曾相識的七十年代</a></li>
+            <li><a href="stamp.html">郵票中的香港史</a></li>
+            <li><a href="manision.html">世界中心的貧民窟︰香港重慶大廈</a></li>
+            <li><a href="citystory.html">觀城記 — 做個有情有義的香港人</a></li>
+          </ul>
+        </li>
+        <li><a href="about.html">關於我們</a></li>
+        <li id="ref" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">參考資料 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="70ref.html">那似曾相識的七十年代</a></li>
+			<li><a href="70ref.html#data">&emsp;資料</a></li>
+            <li class="divider"></li>
+            <li><a href="stampref.html">郵票中的香港史</a></li>
+			<li><a href="stampref.html#video">&emsp;影片</a></li>
+            <li class="divider"></li>
+            <li><a href="manref.html">世界中心的貧民窟</a></li>
+			<li><a href="manref.html#web">&emsp;網頁</a></li>
+			<li><a href="manref.html#video">&emsp;影片</a></li>
+            <li class="divider"></li>
+            <li><a  href="cityref.html">觀城記</a></li>
+			<li><a href="cityref.html#video">&emsp;影片</a></li>
+			<li><a href="cityref.html#article">&emsp;文章</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p class="navbar-text navbar-right">
+        <audio src="70s.lion.mp3" controls loops autoplay>
+          <embed src="70s.lion.mp3" type="application/x-shockwave-flash" wmode="transparent" width="50" height="40" allowScriptAccess="always" align="middle" autostart="true">
+        </audio>
+      </p>
+    </div>
+  </div>
+</nav>
+<div  class="container">
+	<h2 style="text-align:center">
+		那似曾相識的七十年代
+		<br>
+		<small>作者&emsp;呂大樂</small>
+		<br>
+		<small>出版&emsp;中華書局</small>
+	</h2>
+</div>
+<div class="slider-container" style="margin-top:20px;">
+	<div id="slider">
+		<ul></ul>
+	</div>
+</div>
+<div class="container">
+	<p style="font-size:2em;margin:15px 0;">七十年代──香港幸福的神話時代</p>
+	<article>
+		<section id="about">
+			<h3>關於七十年代</h3>
+			<p>&emsp;在不少上一代的香港人心目中，「七十年代的香港」有着一種神話的色彩——在他們眼中，七十年代是香港社會、他們的家庭、甚至是個人的黃金歲月。於不同社會階層的人來說，那時候的確是他們的「好日子」。儘管七十年代的香港仍是殖民地，但在英國政府的管治下，香港在各方面都不斷進步，例如當時政府推行「十年建屋計劃」，又成立了廉政公署……這種種都叫市民生活日漸進步，令他們更滿意香港的生活素質。</p>
+			<p>&emsp;生活在七十年代的香港人是幸福的。雖然本港在1973年曾發生股災，令當時通貨膨脹(通脹)及失業問題極為嚴重，引起大型的經濟蕭條；但縱觀而言，七十年代的香港社會有部分的人已經富有起來了，多數的家庭仍需為口奔馳，應付一家人生活上的開支，慶幸那時候快速發展的經濟，為他們帶來了更多就業及向上流動的機會。另一方面，七十年代的教育問題尚未得到解決，至1971仍有13多萬的適齡兒童沒有入學——這或許是當時街頭犯罪氾濫的主因。七十年代的屋邨經常有箍頭黨、道友埋伏，甚至間中有黑幫械鬥，街頭幫會冒起，治安嚴重欠佳，可幸當時政府對症下藥，帶頭推行撲滅暴力罪行、清潔香港等「以社區為動員基礎」的運動，為香港帶來新氣象。</p>
+		</section>
+		<div id="tips" class="panel panel-primary">
+			<div class="panel-heading">閱讀小貼士</div>
+			<div class="panel-body">
+				<p>要是你認為歷史很沉悶，卻又有興趣深入了解七十年代的香港，不妨先讀讀本地作家陳慧的《拾香紀》。這本書以故事的形式貫穿香港六、七十年代的歷史，內容生動有趣，是研究本港歷史的入門之選呢！</p>
+				<img src="70s/70s.01_02.png" title="七十年代的香港">
+				<img src="70s/70s.pic.jpg" title="七十年代是香港幸福的神話時代">
+				<p>想要加深對香港歷史的認識，另一個較有趣的方法就是到尖沙咀的香港歷史博物館走一趟。那兒有一個名為「香港故事」的常設展覽，透過精美的展品、模型、影片等等，或許可令書中平面的文字變得更立體，不失為認識昔日香港的好方法。</p>
+			</div>
+		</div>
+		<section id="ch1">
+			<h3>1970──屬於香港人的中文</h3>
+			<p>七十年代的香港是英政府的殖民地，香港人慣用的中文也自然受到一定的打壓。1970年3月，當時的學生團體為着此事組成了「中文運動聯席會」，希望受到英政府的重視，為中文一個「清白」。終於，在7月10月，「爭取中文成為法定語文運動聯會」成功成立；而在同年9月，港府宣佈成立專門委員會，研究公函應用中文的問題。另一方面，為了令中文在香港的地位不受到威脅，香港大學生評議會在該年10月正式成立「中文運動工作委員會」，於是中文由當時起成為香港主要的流通語言。</p>
+			<div class="row">
+				<img src="70s/70s.chinese.jpg" title="中文成為法定語文的報道" width="300">
+				<img src="70s/70s.pic01.01.jpg" title="人人也能讀書和享受中國文化">
+			</div>
+		</section>
+		<section id="ch2">
+			<h3>1971──造福人群的入學令</h3>
+			<p>現在常常聽人說，若適齡兒童未有入學，他們的父母將有可能遭檢控。但又有多少人知道，原來這法例源自1971年港英政府的立法。該年9月，政府有鑑於本港有近13萬4千的兒童及青少年未有入學，於是憲報公佈名為《1971年教育(修訂)條例》，並由港督授權教育司執行入學令。由此，家長再不得無故拒絕送十五歲以下子女入學，否則將會被罰款或監禁入獄。因着這個原因，七十年代至今入學率均達至約98%，社會上的治安問題亦因而改善。</p>
+			<div class="row">
+				<img src="70s/70s.QueenCollege.jpg" title="皇仁書院──最早成立的男子官立中學" width="300">
+			</div>
+		</section>
+		<div class="knowledge">
+			<h4>七十年代的香港人這麼重視中文的應用，那麼文學的發展又如何呢？</h4>
+			<p>七十年代對文學發展而言必然是一個重要的時代。七十年代，在香港的文學圈出現了西西、也斯等本地作家，著力書寫香港人的香港，打破了七十年代以前南來作家對香港的論述，確立了香港作為一個發聲主體的位置。</p>
+			<div class="row">
+				<img src="70s/70s.author01.jpg" title="也斯" style="margin-left:20px;" width="300">
+				<img src="70s/70s.author02.jpg" title="西西">
+			</div>
+		</div>
+		<section id="ch3">
+			<h3>1972──最偉大的房屋政策</h3>
+			<p>由七十年代至今，房屋問題仍是叫廣大市民叫苦連天的主要問題。當時普遍港人的生活環境惡劣，衛生問題嚴重，就算少數成功輪候入住公共屋邨單位的市民，居住環境依然擠迫，設施亦相對簡陋。為解決這問題，港英政府於1972年成立房屋委員會，專門負責興建及處理其轄下公共屋邨的事務。同年10月，政府正式推出「十年建屋計劃」，合共投資入八十億元，成為香港有史以來最龐大的公共發展項目，亦令不少無法置業的小市民有所依歸。</p>
+			<div class="row">
+				<img src="70s/70s.03_03.jpg" title="牛頭角下邨">
+			</div>
+		</section>
+		<section id="ch4">
+			<h4>1973──反貪腐的始源</h3>
+			<p>從七十年代初起，貪污成為滲透社會每一個角落的核心問題，其中尤以警隊及公職人員的貪污情況最為嚴重。當時的總警司葛柏貪污一案轟動一時，引起了社會大眾對警務人員貪污的關注，更有不少市民上街遊行，促請政府捉拿潛逃的葛柏歸案。於是，政府在1973年宣佈設立「撲滅貪污專員公署」(即今廉政公署)，以公平公正，不偏不倚的原則偵查香港的貪污案件，也造就了今天香港司法、立法、行政三方獨立的良好基礎。</p>
+			<div class="row">
+				<img src="70s/70s.icac.jpg" title="市民上街遊行抗議貪污">
+				<img src="70s/70s.pic02.01.jpg" title="廉署的咖啡">
+			</div>
+		</section>
+		<div class="knowledge">
+			<h4>誰是葛柏？</h4>
+			<p>葛柏是英國殖民地高級警官，曾任皇家香港警隊外籍總警司。他在1952年加入香港警隊任職見習督察，多年來在警隊表現突出，曾於六七暴動期間立功，屢獲英國政府嘉獎。但他因暗中運用自己的職權貪斂大筆財富，污名遠播，後來潛逃至英國。最終因本港民怨沸騰，新成立的廉政公署成功把葛柏從英國引渡回港接受調查，被判入獄四年。</p>
+			<div class="row">
+				<img src="70s/70s.03_01.png" title="市民上街遊行促請捉拿葛柏歸案" style="margin-left:20px;">
+			</div>
+		</div>
+		<section id="ch5">
+			<h3>1974──哄動一時的大型劫案</h3>
+			<p>這些年來香港的治安不斷進步，社會上已較少有大型的案件發生，而日常發生的也不過是些雞毛蒜皮的小事。然而，在治安未及今天良好的七十年代，卻曾發生一宗哄動全港的大型劫案——於九龍寶生銀行發生的獨行賊脅持人質事件。當時該名劫匪持槍挾持銀行內十一名人質，企圖打劫銀行，更多次鳴槍。幸好劫匪最終被人質制服，也沒重大的傷亡，僅兩男一女在與匪徒糾纏間受輕傷。這是香港史上首宗銀行劫匪挾持人質與警方對峙的事件，引起了全城的熱話。</p>
+			<div class="row">
+				<img src="70s/70s.bank.jpg" title="九龍寶生銀行劫案">
+			</div>
+		</section>
+		<section id="ch6">
+			<h3>1975──渡海小民</h3>
+			<p>1975年5月4日，4600名越南難民在南中國海沉船獲救，由丹麥貨船安全載坻本港水域，被安置在新界軍營內暫時居留，並獲港英政府提供生活津貼。自此之後，愈來愈多第三世界國家的國民偷渡來港，希望能在香港申請成為難民身份，以留港發展，尋求更比在本土國家更好的出路。因此，當時本港人口大增，單是來港尋求庇護的難民已超過20萬人，直至後來香港已無法容納這般巨大的人口增長，終於把前來求援的難民拒諸門外。</p>
+			<div class="row">
+				<img src="70s/70s.04_01.png" title="越南船民">
+				<img src="70s/70s.04_icon.jpg" title="偷渡難民">
+				<img src="70s/70s.pic03.01.jpg" title="留港發展尋求更比在本土國家更好的出路">
+			</div>
+		</section>
+		<div class="knowledge">
+			<h4>聯合國欠下香港債項?</h4>
+			<p>由於香港鄰近多個國家要求香港成為「第一收容港」，把照顧難民起居的責任推給香港，使政府的負擔加重。收容一名越南難民，香港政府每年大約需要花費公帑1萬2千港元，至1998年為止，聯合國難民專員公署欠下香港11.62億港元的債項，直到現今仍未歸還。</p>
+			<div class="row">
+				<img src="70s/70s.04_02.jpg" title="禁閉式越南難民營">
+			</div>
+		</div>
+		<section id="ch7">
+			<h3>1976──居屋單位的出現</h3>
+			<p>繼當時的政府在1972年推出「十年建屋計劃」，受惠不少低收入的貧困家庭後，政府在1976年再次推出更進一步的房屋政策——「居者有其屋」計劃。因為大批來自第三世界國家的難民來港尋求庇護，香港的人口急促上升，房屋問題再次浮現。於是政府透過這個計畫，協助中下入息家庭及公屋住戶以低廉的價錢置業，解決當時房屋需求緊絀的問題，亦讓市民有更舒適的居住環境。</p>
+			<div class="row">
+				<img src="70s/70s.hos.jpg" title="全港首個標准型設計的居屋">
+			</div>
+		</section>
+		<section id="ch8">
+			<h3>1977──制水下的日子</h3>
+			<p>生活在二十一世紀的現代人或許未曾經歷「食水短缺」如此大型的事故，時刻扭開水喉就有自來水供應；但七十年代的人們可苦了，他們經歷了香港史上最嚴重的「食水短缺」事故。1977年6月，香港政府為了解決當時水資源短缺的問題，實施第一階段的「制水」，家家戶戶都得提着膠水桶在街頭輪候取水，存起一家人使用的食水量。直至同年7月，政府迫不得已實施二級「制水」措施，每天分上下午只供水十小時，反映當時的水資源嚴重短缺。最後，食水短缺的問題在1978年4月得到舒緩，港英政府終於在宣佈撤消實施了322日的「制水」措施，恢復全日供水。</p>
+			<div class="row">
+				<img src="70s/70s.05_01.jpg" title="市民在街頭輪候取水">
+				<img src="70s/70s.pic04.01.jpg" title="大叫「樓下冚水喉」曾是風麾一時的文化">
+			</div>
+		</section>
+		<div class="knowledge">
+			<h3>甚麼叫「制水」呢？</h3>
+			<p>制水又名食水管制、有限制供水，原因是水荒令食水成為有限的資源，當局為有效管理使用食水，實施一定政策的分配方法。例如限時供水、單雙日供水、住宅停止供水，只於「街喉」供水等，居民需要付出時間排隊輪候、用體力擔水上樓等。</p>
+		</div>
+		<section id="ch9">
+			<h3>1978──15年免費教育的起始</h3>
+			<p>七十年代的香港，雖然有部分的香港人已經富有起來，但大多的香港人仍然活在貧窮之中；另一方面，港英政府早在七十年代初已強制要求所有適齡兒童必須入學。因此，當時高昂的學費均成為不少家庭最沉重的負擔，很多父母為了令自己的子女能夠上學，不惜身兼多職為他們賺取學費，有的學生甚至因為無法支付學費而被迫退學，不能繼續學業。有鑑及此，港英政府在1978年9月實施「九年免費教育」，令全港的學生均可修讀三年初中課程，增加他們離校後向上流動的機會。</p>
+			<div class="row">
+				<img src="70s/70s.wyc.jpg" title="香港華仁書院原址">
+				<img src="70s/70s.pic05.01.jpg" title="推行九年免費教育">
+			</div>
+		</section>
+		<section id="ch10">
+			<h3>1979──全城關注的童工問題</h3>
+			<p>童工問題在七十年代曾是一個相當藉得關注的問題——因為當時不少沒有入學的青少年都會出外工作幫補家計，但是他們大多都會受到僱主的剝削，如克扣他們的工資和福利，甚至對他們置之不理。為杜絕這類型的情況再次發生，港英政府在1979年8月宣佈，規定十四歲以下的兒童不得在工業及非工業界受僱工作，以保障兒童的權益，同時以此鼓勵他們入學讀書。</p>
+			<div class="row">
+				<img src="70s/70s.06_01.jpg" title="童工">
+		</section>
+		<div class="knowledge">
+			<h3>七十年代的香港人都從事一些怎樣的行業呢？</h3>
+			<p>六、七十年代是香港工業發展最快最薘勃的日子，當時的市民主要從事第二產業的工作，如紡織業、製衣業、塑膠業、玩具製造業、電子業及鐘錶業等等，令香港的工業迅速發展，經濟水平日漸進步。</p>
+			<div class="row">
+				<img src="70s/70s.06_02.jpg" title="工廠工人" style="margin-left:20px;">
+			</div>
+		</div>
+	</article>
+</div>
+<footer class="page-footer">
+	<p>
+		如閣下希望有更好的體驗，請使用
+			<a href="https://www.google.com/intl/en-GB/chrome/browser/?hl=en-GB&brand=CHMI">
+				Google Chrome
+			</a>
+		或
+			<a href="http://mozilla.com.tw/firefox/all/">
+				Mozilla Firefox
+			</a>
+		<br>
+		<span style="font-size:5px;">
+			Web page designed by Carmen Chui and Sharon Yeung. Code designed by Tony Yip. All designers are from <a href="http://www.pyc.edu.hk/">Shatin Pui Ying College</a>
+			<br>
+			Plugin by jQuery Foundation, Inc. and Twitter, Inc.
+			<br>
+			Formatting: Apache/2.4.7 (Win32) OpenSSL/0.9.8y PHP/5.4.22
+		</span>
+	</p>
+</footer>
+</body>
+</html>
