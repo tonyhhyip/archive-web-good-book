@@ -3,107 +3,91 @@
 	All plugin javascript and stylesheet are opensource
 -->
 <html lang="zh-TW">
-	<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<!-- #include html5shiv v3.7.0-->
-	<!--[if IE]>
-		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/html5shiv/dist/html5shiv.js"></script>
-		<script src="http://www.pyc.edu.hk/~pyc10169/shiv/respond/respond.min.js"></script>
-	<![endif]-->
-	<script src="loader.min.js"></script>
-	<title>燈火璀璨的背後</title>	<script type="text/javascript">
-	$(document).ready(function(){
-		$("article > section").css("margin","5em 0").after("<div class='pull-right'><a href='#top'>回到最上</a></div><hr>");
-		$("header").attr("id","top");
-		var icon=["cover","refugo","crossharbourtunnel","star","redcross01","building"];
-		 for(i in icon){
-				$("div#slider > ul").append(
-					$("<li></li>").append(
-						$("<a></a>").attr({
-							"href":"#"+(i==0?"about":"ch"+i)
-						}).append(
-							$("<img></img>").attr({
-								"src":"stamp/stamp."+icon[i]+(i==0?".png":".jpg"),
-								"width":"500"
-							}).css({
-								"max-width":"300px",
-								"max-height":"400px",
-							})
-						)
-					)
-				);
-			}
-	    var sudoSlider = $("#slider").sudoSlider({
-            prevNext: true,
-			continuous:true,
-			speed:1000,
-			initCallback:function(){
-				$(".slider-container").before("<img id='prev'>").before("<img id='next'>").css("width","300px");
-				$("#slider").css("width","300px");
-				$("img#prev").attr({
-					"src":"stamp/stamp.building.jpg"	
-				}).css({
-					"float":"left",
-					"max-width":"200px",
-					"margin-left":"30px",
-					"cursor":"pointer"
-				}).click(function(){
-					 sudoSlider.goToSlide("prev");
-				});
-				$("img#next").attr({
-					"src":"stamp/stamp.refugo.jpg"
-				}).css({
-					"float":"right",
-					"max-width":"200px",
-					"margin-right":"30px",
-					"cursor":"pointer"
-				}).click(function(){
-					 sudoSlider.goToSlide("next");
-				});
-				$(".nextBtn").css({
-					"background-image":"url(button.right.png)",
-					"background-size":"30px 50px",
-					"left":"300px"
-				});
-				$(".prevBtn").css({
-					"background-image":"url(button.left.png)",
-					"background-size":"30px 50px"
-				})
-			},
-			beforeAnimation:function(){
-				$("img#next,img#prev").slideUp();
-			},
-			afterAnimation:function(e){
-				$("#slider").css("width","300px");
-				$("img#prev").attr("src","stamp/stamp."+icon[e==1?icon.length-1:e-2]+(e==2?".png":".jpg"));
-				$("img#next").attr("src","stamp/stamp."+icon[e==icon.length?0:e]+(icon.length==e?".png":".jpg"));
-				$("img#next,img#prev").slideDown();
-			}
-        });
-	    $(document).keydown(function(e){
-			if(e.which==39){
-				sudoSlider.goToSlide("next");
-			}else if(e.which==37){
-				sudoSlider.goToSlide("prev");
-			}
-		});
-		$("div.row > img").tooltip({
-	    	show: {
-	    		effect: "slideDown",
-	        	delay: 250
-	      	},
-	      	hide: {
-		    	effect: "explode",
-		    	delay: 250
-		    }
-	    }).addClass("img-rounded").attr("alt",$("div.row > img").attr("title"));
-	    $(".knowledge").before("<h3>郵票小知識</h3>");
-	});
-	</script>
-﻿</head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/theme.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ideal-image-slider/1.5.1/ideal-image-slider.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ideal-image-slider/1.5.1/themes/default/default.min.css" />
+  <link rel="stylesheet" href="style.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ideal-image-slider/1.5.1/ideal-image-slider.min.js"></script>
+  <title>郵票中的香港史 | 燈火璀璨的背後</title>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("article > section").css("margin","5em 0").after("<div class='pull-right'><a href='#top'>回到最上</a></div><hr>");
+      $("header").attr("id","top");
+      var icon=["cover","refugo","crossharbourtunnel","star","redcross01","building"];
+      for(i in icon){
+        $("div#slider").append(
+          $("<a></a>").attr({
+            "href":"#"+(i==0?"about":"ch"+i)
+          }).append(
+            $("<img></img>").attr({
+              "src":"stamp/stamp."+icon[i]+(i==0?".png":".jpg"),
+              "width":"500"
+            }).css({
+              "max-width":"300px",
+              "max-height":"400px",
+            })
+          )
+        );
+      }
+      const $prev = $(document.getElementById('prev'));
+      const $next = $(document.getElementById('next'));
+      const $prevImage = $(document.getElementById('prevImage'));
+      const $nextImage = $(document.getElementById('nextImage'));
+
+      function updateImage() {
+        setTimeout(function () {
+          var next = $('.iis-next-slide');
+          var prev = $('.iis-previous-slide');
+          $prevImage.attr('src', prev.css('background-image').replace(/url\("(.+)"\)/, '$1').trim());
+          $nextImage.attr('src', next.css('background-image').replace(/url\("(.+)"\)/, '$1').trim());
+        }, 500);
+      }
+
+      $prev.click(function () {
+        slider.previousSlide();
+      });
+
+      $next.click(function () {
+        slider.nextSlide();
+      });
+
+      var slider = new IdealImageSlider.Slider({
+        selector: '#slider',
+        height: 'auto',
+        afterChange: updateImage,
+        onInit: function () {
+          var next = $('.iis-next-slide').css('background-image').replace(/url\("(.+)"\)/, '$1').trim();
+          var prev = $('.iis-previous-slide').css('background-image').replace(/url\("(.+)"\)/, '$1').trim();
+          $prevImage.attr('src', prev === 'none' ? '70s.png' : prev);
+          $nextImage.attr('src', next === 'none' ? 'manisions.png' : next);
+        }
+      });
+
+      $("div.row > img").tooltip({
+        show: {
+          effect: "slideDown",
+          delay: 250
+        },
+        hide: {
+          effect: "explode",
+          delay: 250
+        }
+      }).addClass("img-rounded").attr("alt",$("div.row > img").attr("title"));
+      $(".knowledge").before("<h3>郵票小知識</h3>");
+    });
+  </script>
+  ﻿</head>
 <body>
 <header class="page-header">
   <h1 style="text-align:center;">燈火璀璨的背後</h1>
@@ -115,10 +99,10 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-		 <li id="main" class="dropdown">
+        <li id="main" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">主題介紹 <b class="caret"></b></a>
           <ul class="dropdown-menu">
-              <li><a href="70s.html">那似曾相識的七十年代</a></li>
+            <li><a href="70s.html">那似曾相識的七十年代</a></li>
             <li><a href="stamp.html">郵票中的香港史</a></li>
             <li><a href="manision.html">世界中心的貧民窟︰香港重慶大廈</a></li>
             <li><a href="citystory.html">觀城記 — 做個有情有義的香港人</a></li>
@@ -129,18 +113,18 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">參考資料 <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="70ref.html">那似曾相識的七十年代</a></li>
-			<li><a href="70ref.html#data">&emsp;資料</a></li>
+            <li><a href="70ref.html#data">&emsp;資料</a></li>
             <li class="divider"></li>
             <li><a href="stampref.html">郵票中的香港史</a></li>
-			<li><a href="stampref.html#video">&emsp;影片</a></li>
+            <li><a href="stampref.html#video">&emsp;影片</a></li>
             <li class="divider"></li>
             <li><a href="manref.html">世界中心的貧民窟</a></li>
-			<li><a href="manref.html#web">&emsp;網頁</a></li>
-			<li><a href="manref.html#video">&emsp;影片</a></li>
+            <li><a href="manref.html#web">&emsp;網頁</a></li>
+            <li><a href="manref.html#video">&emsp;影片</a></li>
             <li class="divider"></li>
             <li><a  href="cityref.html">觀城記</a></li>
-			<li><a href="cityref.html#video">&emsp;影片</a></li>
-			<li><a href="cityref.html#article">&emsp;文章</a></li>
+            <li><a href="cityref.html#video">&emsp;影片</a></li>
+            <li><a href="cityref.html#article">&emsp;文章</a></li>
           </ul>
         </li>
       </ul>
@@ -153,158 +137,158 @@
   </div>
 </nav>
 <div class="container">
-	<h2 style="text-align:center;">
-		郵票中的香港史
-		<br>
-		<small>編者&emsp;蔡思行</small>
-		<br>
-		<small>出版&emsp;中華書局</small>
-	</h2>
+  <h2 style="text-align:center;">
+    郵票中的香港史
+    <br>
+    <small>編者&emsp;蔡思行</small>
+    <br>
+    <small>出版&emsp;中華書局</small>
+  </h2>
 </div>
-<div class="slider-container" style="margin-top:20px;">
-	<div id="slider">
-		<ul></ul>
-	</div>
+<div class="slider-container">
+  <div id="prev"><img src="" id="prevImage"></div>
+  <div id="next"><img src="" id="nextImage"></div>
+  <div id="slider"></div>
 </div>
 <div class="container">
-	<p style="font-size:2em;margin:15px 0;">看郵票，看香港人走過的日子──這是一本郵票簡史，也是一本香港小史。</p>
-	<article>
-		<section id="about">
-			<h3>關於這本書</h3>
-			<p>&emsp;在1862年，首枚屬於香港的郵票誕生，其設計樣式仿效英國郵票，以維多利亞女皇的側面肖像為題，一百五十多年以來，香港郵票推陳出新、題材多樣，在英國統治下香港郵票漸漸自成一格，發展出獨有的風格，由雙色郵票至到彩色，甚至鍍金，見證了香港郵票的進步。</p>
-			<p>&emsp;無論在任何地方，郵票也無聲地紀錄了當地的文化和歷史，香港亦非例外。這本書收錄了二百多張香港郵票、小全張及首日封，也記述其設計意念和時代背景，重新勾畫了百多年來香港從英國殖民地到中國特別行政區的歷史面貌。</p>
-			<div class="row">
-				<img src="stamp/stamp.pic.png" title="郵票見證了香港的進步">
-			</div>
-			<div class="knowledge">
-				<h4>甚麼是郵票、小全張及首日封？</h4>
-				<div>
-					<p>郵票&emsp;一套通用、為特別主題或紀念特定故事項而發行的未蓋銷郵票。</p>
-					<p>小全張&emsp;一張附有整套特別或紀念郵票的郵品。</p>
-					<p>首日封&emsp;與通用、紀念或特別郵票有相同主題的信封。</p>
-					<div class="row">
-						<img src="stamp/stamp.stamp.jpg" alt="郵票" title="郵票" width="250">
-						<img src="stamp/stamp.souvenirsheet.jpg" alt="小全張" title="小全張" width="250">
-						<img src="stamp/stamp.firstdaycover.jpg" alt="首日封" title="首日封" width="300">
-					</div>
-				</div>
-			</div>
-		</section>
-		<div id="tips" class="panel panel-primary" style="margin:2em 0;">
-			<div class="panel-heading">閱讀小貼士</div>
-			<div class="panel-body">
-				<p>這本書的每個章節並無直接關係，所以可以先選擇看有興趣的篇章，自行決定閱讀次序，內容主要分為歷史文物、香港文化、香港團體和經濟發展，由自己的喜好開始鋪展對香港歷史的認識吧！</p>
-				<p>2012年是香港郵票發行一百五十周年，那一年發行了一本郵票小冊子簡單介紹了香港郵票的簡史，現在有些郵票社仍有展示，在閱讀這本書前可以先看那本小冊子喔！</p>
-				<img src="stamp/stamp.150album.jpg" alt="一百五十周年小冊子" title="一百五十周年小冊子" width="500">
-				<p>有集郵的興趣嗎？若果有可拿自己的郵票跟書中的對比一下，把自己帶進書中香港的歷史長河中遨遊吧！若果沒有，可以現在開始行動，集郵也是共香港同歷滄桑的體現！</p>
-			</div>
-		</div>
-		<section id="ch1">
-			<h3>第一章︰&emsp;從英國殖民地到中國特別行政區<br><small>大有來頭的郵票──抗日勝利，香港重光</small></h3>			
-			<p>「三年零八個月」、「黑色聖誕」這等詞彙均會令老一輩香港人心有餘悸。那時在幽暗的集中營中，仍有人抱著抗戰完結的願望，渴望著香港重光的一天，在集中營中冒著生命危險，畫了「勝利和平紀念」郵票草圖，1943年草稿完成，但1944年和平勝利的願望未遂，一天又一天的盼望，終於等到1945年二戰完結，他就是曾任郵票設計的鍾惠霖（William E.Jones）。</p>
-			<p>郵票在1946年8月29日發行，香港如郵票下方的「不死鳥」般重振其威，在日本佔領下浴火重生，此一戰中，中國人頑強抗命，香港人亦組織了一個更團結的心，在香港漫漫長路往未來走下去！</p>
-			<div class="row">
-				<img src="stamp/stamp.refugo.jpg" title="慶祝香港重光">
-				<img src="stamp/stamp.pic01.01.jpg" title="冒著生命危險，畫了「勝利和平紀念」郵票草圖">
-			</div>
-			<div class="knowledge">
-				<h4>郵票四周的齒孔何來？</h4>
-				<div>
-					<p>以前的郵票四周並無齒孔，出時要用剪刀一枚枚開，極不方便。在1847年由英國人雅加（Henry Archer）發明。以機器在每枚郵票的連接處打孔，郵票就能容易被撕開。現今科技發達，所以在一些特別郵票中也有不同形狀的齒孔。</p>
-					<div class="row">
-						<img src="stamp/stamp.hole.jpg" title="星星齒孔">
-					</div>
-				</div>
-		</section>
-		<section id="ch2">
-			<h3>第二章︰&emsp;香港起飛──大型基建與經濟發展<br><small>香港交通的驕慠──紅磡海底隧道</small></h3>
-			<p>這是一位台灣導遊對香港團友說的故事︰那位導遊小時往香港旅遊，那兒的香港導遊在旅遊巴士過紅磡海底隧道時提醒車內團友進隧道後要仔細觀看，過了隧道後，團友們都不明所以，那香港導遊說︰「這紅磡海底隧道可是一條海中的通道，若果是在海面上造橋，則大煞維多利亞港的風景了。」自此，那台灣導遊每次到香港旅遊都會搭車進入紅磡海底隧道體驗在「海底」之中的感覺。</p>
-			<p>紅磡海底隧道的計劃自二十世紀初己有提出，整個陸路貫通港九兩地的計劃從建議、構思、批淮到落實，經歷足足它十年，過程需把隧道於海中接合，再將海水抽出，若有任何縫隙，也足以令隧道倒塌。試問這一連串嚴謹的工序有多少國家能造到？紅磡海底隧道可謂是建築界的一項奇蹟，為香港交通史上的里程碑，所以香港人應對紅磡海底隧道的落成和啟用感驕慠。</p>
-			<div class="row">
-				<img src="stamp/stamp.crossharbourtunnel.jpg" title="紅磡海底隧道">
-				<img src="stamp/stamp.pic02.01.jpg" title="若有任何縫隙，也足以令隧道倒塌。">
-			</div>
-			<div class="knowledge">
-				<h4>香港郵政</h4>
-				<div>
-					<p>香港郵政是香港的郵政部門，成立於1841年，現為香港政府商務及經濟發展局轄下的部門。1995年開始轉為以營運基金形式運作，部門的收入來自售賣特殊 郵票、郵遞服務、特快專遞(EMS），香港郵政標誌以紫色與藍綠色搭配，這種顏色在企業標誌設計中很少見，大多數企業都會選...<a href="stampmore.html#post">閱讀全文</a></p>
-					<div class="row">
-						<img src="stamp/stamp.postlogo.jpg" title="香港郵政標誌">
-					</div>
-				</div>
-			</div>
-		</section>
-		<section id="ch3">
-			<h3>第三章︰&emsp;香港社會、文化、教育發展<br><small>不死的巨星群──香港再世「影曲」記</small></h3>
-			<p>打開擴音器，知道這背景歌曲是誰唱？是一代歌星甄妮的《東方之珠》。香港被譽為「東方荷李活」，香港由拍粵劇戲到進身荷李活，其中產生的電影戲劇和歌曲，曾執全球華人之耳，影壇巨星數李小龍，男歌星計羅文、許冠傑、葉振棠，女歌手則徐小鳳、梅艷芳、甄妮。近來又有不少演藝界巨星重出江湖，五十至九十年代的歌還是最能振奮人心，歌中映出「從未怨過命，一生都打拼」的香港精神，意思深遠，教人聽得如痴如醉。</p>
-			<p>香港在回歸前後，便發行了三套以香港影星歌星為主題的特別郵票，也有菲林盒和唱片的蹤影出現。郵票中每一位都為演藝界立下重要的地位，但其中有大部分的巨星都因意外、患病或以自行了斷的方式，在風華正茂時離去，「來又如風，離又如風」，令人無不婉惜。</p>
-			<div class="row">
-				<img src="stamp/stamp.star.jpg" title="香港影星歌星的特別郵票">
-				<img src="stamp/stamp.pic03.01.jpg" title="歌中意思深遠，教人聽得如痴如醉">
-			</div>
-			<div class="knowledge">
-				<h4>2014年香港通用郵票</h4>
-				<p>2014年香港通用郵票將以中國香港世界地質公園為設計主題。地質公園共有兩大園區及八個景區，不但景觀優美，地貌和異，而且極具科學價值。香港郵政期望藉此套通用郵票，向公眾宣揚地球科學知識，加強市民愛護環境的意識。這套通用郵票將計劃於2014年7月發行，最小面額十先時，而最大則為五十元</p>
-				<div class="row">
-					<img src="stamp/stamp.2014stamp.jpg" alt="2014年香港通用郵票" title="2014年香港通用郵票" style="margin-left:25px;">
-				</div>
-			</div>
-		</section>
-		<section id="ch4">
-			<h3>第四章︰&emsp;救急扶危──香港慈善與公益<br><small>救援和服務──香港紅十字會</small></h3>
-			<p>香港的醫療體系有嚴密架構，除了政府的財政扶助外，也有不少志願團體的合作，香港紅十字會也是其中之一，在社區之中亦見捐血站，有時也會有捐血車到學校或公司收集志願者的血，再運至附近醫院貯藏，血液積少成多，香港的普遍血型血庫充足，也拯救了不少人的寶貴生命，而紅色的十字也成了救護的表徵。</p>
-			<p>2000年，香港發行了名為「香港紅十字會」的郵票，介紹他們所供的主要服務，包括輸血、賑災、志願服務和特殊教育，這機構不但以救人至上，也助人為樂。在意外現場助救護員急救，維持傷者的生命，也提供了不少青少年紀律培訓，在學校成立制服組織，發展多樣。</p>
-			<div class="row">
-				<img src="stamp/stamp.redcross01.jpg" title="「香港紅十字會」郵票小全張">
-				<img src="stamp/stamp.redcross02.jpg" title="「香港紅十字會」郵票">
-				<img src="stamp/stamp.pic04.01.jpg" title="捐血維持傷者的生命">
-			</div>
-			<div class="knowledge">
-				<h4>世界上首枚郵票和首枚香港郵票</h4>
-				<p>黑便士（英語：Penny Black）是世界上第一張不乾膠郵票，1840年5月1日在英國正式發行，6日投入使用。雖然5月6日是郵票生效的第一天，但由於郵票從5月1日就開始出售。<br>
-				首枚香港郵票︰	1862年12月8日發行，其設計樣式仿效英國郵票，以維多利亞女皇的側面肖像為題。 
-				</p>
-				<div class="row">
-					<img src="stamp/stamp.firstworldstamp.jpg" alt="黑便士" title="黑便士" style="margin-left:25px;" width="300" height="300">
-					<img src="stamp/stamp.firsthkstamp.jpg" alt="首枚香港郵票" title="首枚香港郵票">
-				</div>
-			</div>
-		</section>
-		<section id="ch5">
-			<h3>第五章︰&emsp;香港歷史痕跡<br><small>中西合壁──香港文明</small></h3>
-			<p>在文化的軌跡上，香港在街道上都有些西式建築，但走的卻是香港人，在外國人的眼中，香港是一個文化不明顯的地方，但每個建築都有屬於它們的歷史。香港由五大氏族始已有不同的祠堂和鄉居，也有不少捕魚為生的「小橋流水人家」，本是一個中國南方的其中一個小漁村。成了英國的殖民地後，就建造了很多西式的建設。回歸後，香港政府亦將大部分的建築活化，如把「上環街市」修葺成「西港城」商場、美利樓亦有西餐廳等。</p>
-			<p>這些中西合壁的建築吸引了各地市民參觀，不論他們愛中式還是好西式，在香港都能滿足他們的要求。中西合壁也許就是香港的獨有文化，香港人應珍惜它，令這東方之珠更閃耀！</p>
-			<div class="row">
-				<img src="stamp/stamp.building.jpg" title="活化香港歷史建築郵票">
-				<img src="stamp/stamp.pic05.01.jpg" title="香港人應珍惜他們的獨有文化">
-			</div>
-			<div class="knowledge">
-				<h4>如何集郵？</h4>
-				<p>把郵票同信封紙分離開是一件很細致的“技術性”工作，正確的方法應該是：先將郵票連同信封紙一起從信封上剪下，把郵票放入清水中浸泡，這樣過幾分鍾至十幾分鍾以後，郵票就會自動同信封紙脫離。郵票在未同信封紙...<a href="stampmore.html#collect">閱讀全文</a></p>
-			</div>
-		</section>
-	</article>
+  <p style="font-size:2em;margin:15px 0;">看郵票，看香港人走過的日子──這是一本郵票簡史，也是一本香港小史。</p>
+  <article>
+    <section id="about">
+      <h3>關於這本書</h3>
+      <p>&emsp;在1862年，首枚屬於香港的郵票誕生，其設計樣式仿效英國郵票，以維多利亞女皇的側面肖像為題，一百五十多年以來，香港郵票推陳出新、題材多樣，在英國統治下香港郵票漸漸自成一格，發展出獨有的風格，由雙色郵票至到彩色，甚至鍍金，見證了香港郵票的進步。</p>
+      <p>&emsp;無論在任何地方，郵票也無聲地紀錄了當地的文化和歷史，香港亦非例外。這本書收錄了二百多張香港郵票、小全張及首日封，也記述其設計意念和時代背景，重新勾畫了百多年來香港從英國殖民地到中國特別行政區的歷史面貌。</p>
+      <div class="row">
+        <img src="stamp/stamp.pic.png" title="郵票見證了香港的進步">
+      </div>
+      <div class="knowledge">
+        <h4>甚麼是郵票、小全張及首日封？</h4>
+        <div>
+          <p>郵票&emsp;一套通用、為特別主題或紀念特定故事項而發行的未蓋銷郵票。</p>
+          <p>小全張&emsp;一張附有整套特別或紀念郵票的郵品。</p>
+          <p>首日封&emsp;與通用、紀念或特別郵票有相同主題的信封。</p>
+          <div class="row">
+            <img src="stamp/stamp.stamp.jpg" alt="郵票" title="郵票" width="250">
+            <img src="stamp/stamp.souvenirsheet.jpg" alt="小全張" title="小全張" width="250">
+            <img src="stamp/stamp.firstdaycover.jpg" alt="首日封" title="首日封" width="300">
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="tips" class="panel panel-primary" style="margin:2em 0;">
+      <div class="panel-heading">閱讀小貼士</div>
+      <div class="panel-body">
+        <p>這本書的每個章節並無直接關係，所以可以先選擇看有興趣的篇章，自行決定閱讀次序，內容主要分為歷史文物、香港文化、香港團體和經濟發展，由自己的喜好開始鋪展對香港歷史的認識吧！</p>
+        <p>2012年是香港郵票發行一百五十周年，那一年發行了一本郵票小冊子簡單介紹了香港郵票的簡史，現在有些郵票社仍有展示，在閱讀這本書前可以先看那本小冊子喔！</p>
+        <img src="stamp/stamp.150album.jpg" alt="一百五十周年小冊子" title="一百五十周年小冊子" width="500">
+        <p>有集郵的興趣嗎？若果有可拿自己的郵票跟書中的對比一下，把自己帶進書中香港的歷史長河中遨遊吧！若果沒有，可以現在開始行動，集郵也是共香港同歷滄桑的體現！</p>
+      </div>
+    </div>
+    <section id="ch1">
+      <h3>第一章︰&emsp;從英國殖民地到中國特別行政區<br><small>大有來頭的郵票──抗日勝利，香港重光</small></h3>
+      <p>「三年零八個月」、「黑色聖誕」這等詞彙均會令老一輩香港人心有餘悸。那時在幽暗的集中營中，仍有人抱著抗戰完結的願望，渴望著香港重光的一天，在集中營中冒著生命危險，畫了「勝利和平紀念」郵票草圖，1943年草稿完成，但1944年和平勝利的願望未遂，一天又一天的盼望，終於等到1945年二戰完結，他就是曾任郵票設計的鍾惠霖（William E.Jones）。</p>
+      <p>郵票在1946年8月29日發行，香港如郵票下方的「不死鳥」般重振其威，在日本佔領下浴火重生，此一戰中，中國人頑強抗命，香港人亦組織了一個更團結的心，在香港漫漫長路往未來走下去！</p>
+      <div class="row">
+        <img src="stamp/stamp.refugo.jpg" title="慶祝香港重光">
+        <img src="stamp/stamp.pic01.01.jpg" title="冒著生命危險，畫了「勝利和平紀念」郵票草圖">
+      </div>
+      <div class="knowledge">
+        <h4>郵票四周的齒孔何來？</h4>
+        <div>
+          <p>以前的郵票四周並無齒孔，出時要用剪刀一枚枚開，極不方便。在1847年由英國人雅加（Henry Archer）發明。以機器在每枚郵票的連接處打孔，郵票就能容易被撕開。現今科技發達，所以在一些特別郵票中也有不同形狀的齒孔。</p>
+          <div class="row">
+            <img src="stamp/stamp.hole.jpg" title="星星齒孔">
+          </div>
+        </div>
+    </section>
+    <section id="ch2">
+      <h3>第二章︰&emsp;香港起飛──大型基建與經濟發展<br><small>香港交通的驕慠──紅磡海底隧道</small></h3>
+      <p>這是一位台灣導遊對香港團友說的故事︰那位導遊小時往香港旅遊，那兒的香港導遊在旅遊巴士過紅磡海底隧道時提醒車內團友進隧道後要仔細觀看，過了隧道後，團友們都不明所以，那香港導遊說︰「這紅磡海底隧道可是一條海中的通道，若果是在海面上造橋，則大煞維多利亞港的風景了。」自此，那台灣導遊每次到香港旅遊都會搭車進入紅磡海底隧道體驗在「海底」之中的感覺。</p>
+      <p>紅磡海底隧道的計劃自二十世紀初己有提出，整個陸路貫通港九兩地的計劃從建議、構思、批淮到落實，經歷足足它十年，過程需把隧道於海中接合，再將海水抽出，若有任何縫隙，也足以令隧道倒塌。試問這一連串嚴謹的工序有多少國家能造到？紅磡海底隧道可謂是建築界的一項奇蹟，為香港交通史上的里程碑，所以香港人應對紅磡海底隧道的落成和啟用感驕慠。</p>
+      <div class="row">
+        <img src="stamp/stamp.crossharbourtunnel.jpg" title="紅磡海底隧道">
+        <img src="stamp/stamp.pic02.01.jpg" title="若有任何縫隙，也足以令隧道倒塌。">
+      </div>
+      <div class="knowledge">
+        <h4>香港郵政</h4>
+        <div>
+          <p>香港郵政是香港的郵政部門，成立於1841年，現為香港政府商務及經濟發展局轄下的部門。1995年開始轉為以營運基金形式運作，部門的收入來自售賣特殊 郵票、郵遞服務、特快專遞(EMS），香港郵政標誌以紫色與藍綠色搭配，這種顏色在企業標誌設計中很少見，大多數企業都會選...<a href="stampmore.html#post">閱讀全文</a></p>
+          <div class="row">
+            <img src="stamp/stamp.postlogo.jpg" title="香港郵政標誌">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="ch3">
+      <h3>第三章︰&emsp;香港社會、文化、教育發展<br><small>不死的巨星群──香港再世「影曲」記</small></h3>
+      <p>打開擴音器，知道這背景歌曲是誰唱？是一代歌星甄妮的《東方之珠》。香港被譽為「東方荷李活」，香港由拍粵劇戲到進身荷李活，其中產生的電影戲劇和歌曲，曾執全球華人之耳，影壇巨星數李小龍，男歌星計羅文、許冠傑、葉振棠，女歌手則徐小鳳、梅艷芳、甄妮。近來又有不少演藝界巨星重出江湖，五十至九十年代的歌還是最能振奮人心，歌中映出「從未怨過命，一生都打拼」的香港精神，意思深遠，教人聽得如痴如醉。</p>
+      <p>香港在回歸前後，便發行了三套以香港影星歌星為主題的特別郵票，也有菲林盒和唱片的蹤影出現。郵票中每一位都為演藝界立下重要的地位，但其中有大部分的巨星都因意外、患病或以自行了斷的方式，在風華正茂時離去，「來又如風，離又如風」，令人無不婉惜。</p>
+      <div class="row">
+        <img src="stamp/stamp.star.jpg" title="香港影星歌星的特別郵票">
+        <img src="stamp/stamp.pic03.01.jpg" title="歌中意思深遠，教人聽得如痴如醉">
+      </div>
+      <div class="knowledge">
+        <h4>2014年香港通用郵票</h4>
+        <p>2014年香港通用郵票將以中國香港世界地質公園為設計主題。地質公園共有兩大園區及八個景區，不但景觀優美，地貌和異，而且極具科學價值。香港郵政期望藉此套通用郵票，向公眾宣揚地球科學知識，加強市民愛護環境的意識。這套通用郵票將計劃於2014年7月發行，最小面額十先時，而最大則為五十元</p>
+        <div class="row">
+          <img src="stamp/stamp.2014stamp.jpg" alt="2014年香港通用郵票" title="2014年香港通用郵票" style="margin-left:25px;">
+        </div>
+      </div>
+    </section>
+    <section id="ch4">
+      <h3>第四章︰&emsp;救急扶危──香港慈善與公益<br><small>救援和服務──香港紅十字會</small></h3>
+      <p>香港的醫療體系有嚴密架構，除了政府的財政扶助外，也有不少志願團體的合作，香港紅十字會也是其中之一，在社區之中亦見捐血站，有時也會有捐血車到學校或公司收集志願者的血，再運至附近醫院貯藏，血液積少成多，香港的普遍血型血庫充足，也拯救了不少人的寶貴生命，而紅色的十字也成了救護的表徵。</p>
+      <p>2000年，香港發行了名為「香港紅十字會」的郵票，介紹他們所供的主要服務，包括輸血、賑災、志願服務和特殊教育，這機構不但以救人至上，也助人為樂。在意外現場助救護員急救，維持傷者的生命，也提供了不少青少年紀律培訓，在學校成立制服組織，發展多樣。</p>
+      <div class="row">
+        <img src="stamp/stamp.redcross01.jpg" title="「香港紅十字會」郵票小全張">
+        <img src="stamp/stamp.redcross02.jpg" title="「香港紅十字會」郵票">
+        <img src="stamp/stamp.pic04.01.jpg" title="捐血維持傷者的生命">
+      </div>
+      <div class="knowledge">
+        <h4>世界上首枚郵票和首枚香港郵票</h4>
+        <p>黑便士（英語：Penny Black）是世界上第一張不乾膠郵票，1840年5月1日在英國正式發行，6日投入使用。雖然5月6日是郵票生效的第一天，但由於郵票從5月1日就開始出售。<br>
+          首枚香港郵票︰	1862年12月8日發行，其設計樣式仿效英國郵票，以維多利亞女皇的側面肖像為題。
+        </p>
+        <div class="row">
+          <img src="stamp/stamp.firstworldstamp.jpg" alt="黑便士" title="黑便士" style="margin-left:25px;" width="300" height="300">
+          <img src="stamp/stamp.firsthkstamp.jpg" alt="首枚香港郵票" title="首枚香港郵票">
+        </div>
+      </div>
+    </section>
+    <section id="ch5">
+      <h3>第五章︰&emsp;香港歷史痕跡<br><small>中西合壁──香港文明</small></h3>
+      <p>在文化的軌跡上，香港在街道上都有些西式建築，但走的卻是香港人，在外國人的眼中，香港是一個文化不明顯的地方，但每個建築都有屬於它們的歷史。香港由五大氏族始已有不同的祠堂和鄉居，也有不少捕魚為生的「小橋流水人家」，本是一個中國南方的其中一個小漁村。成了英國的殖民地後，就建造了很多西式的建設。回歸後，香港政府亦將大部分的建築活化，如把「上環街市」修葺成「西港城」商場、美利樓亦有西餐廳等。</p>
+      <p>這些中西合壁的建築吸引了各地市民參觀，不論他們愛中式還是好西式，在香港都能滿足他們的要求。中西合壁也許就是香港的獨有文化，香港人應珍惜它，令這東方之珠更閃耀！</p>
+      <div class="row">
+        <img src="stamp/stamp.building.jpg" title="活化香港歷史建築郵票">
+        <img src="stamp/stamp.pic05.01.jpg" title="香港人應珍惜他們的獨有文化">
+      </div>
+      <div class="knowledge">
+        <h4>如何集郵？</h4>
+        <p>把郵票同信封紙分離開是一件很細致的“技術性”工作，正確的方法應該是：先將郵票連同信封紙一起從信封上剪下，把郵票放入清水中浸泡，這樣過幾分鍾至十幾分鍾以後，郵票就會自動同信封紙脫離。郵票在未同信封紙...<a href="stampmore.html#collect">閱讀全文</a></p>
+      </div>
+    </section>
+  </article>
 </div>
 
 <footer class="page-footer">
-	<p>
-		如閣下希望有更好的體驗，請使用
-			<a href="https://www.google.com/intl/en-GB/chrome/browser/?hl=en-GB&brand=CHMI">
-				Google Chrome
-			</a>
-		或
-			<a href="http://mozilla.com.tw/firefox/all/">
-				Mozilla Firefox
-			</a>
-		<br>
-		<span style="font-size:5px;">
+  <p>
+    如閣下希望有更好的體驗，請使用
+    <a href="https://www.google.com/intl/en-GB/chrome/browser/?hl=en-GB&brand=CHMI">
+      Google Chrome
+    </a>
+    或
+    <a href="http://mozilla.com.tw/firefox/all/">
+      Mozilla Firefox
+    </a>
+    <br>
+    <span style="font-size:5px;">
 			Web page designed by Carmen Chui and Sharon Yeung. Code designed by Tony Yip. All designers are from <a href="http://www.pyc.edu.hk/">Shatin Pui Ying College</a>
 			<br>
 			Plugin by jQuery Foundation, Inc. and Twitter, Inc.
 			<br>
 			Formatting: Apache/2.4.7 (Win32) OpenSSL/0.9.8y PHP/5.4.22
 		</span>
-	</p>
+  </p>
 </footer>
 </body>
 </html>
